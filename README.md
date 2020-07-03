@@ -1,2 +1,2 @@
 # course-maker
-Go to [v2](v2).
+Access the course maker [here](v1).
