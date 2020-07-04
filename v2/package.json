@@ -1,0 +1,68 @@
+{
+  "name": "course-maker",
+  "version": "1.0.0",
+  "description": "An app designed for writing math courses to be published on socrathematics.github.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/socrathematics/course-maker.git"
+  },
+  "keywords": [
+    "html",
+    "js",
+    "css",
+    "desktop",
+    "electron"
+  ],
+  "author": "Saumya Singhal",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/socrathematics/course-maker/issues"
+  },
+  "homepage": "https://github.com/socrathematics/course-maker#readme",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.52",
+    "@electron-forge/maker-deb": "^6.0.0-beta.52",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.52",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.52",
+    "@electron-forge/maker-zip": "^6.0.0-beta.52",
+    "electron": "^10.0.0-beta.8"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
+    "jquery": "^2.2.4"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "course_maker"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
