@@ -2,7 +2,8 @@ var root = document.querySelector("#root");
 var info = [{type:"none"}];
 var uinfo = [];
 var lastFocused={id:"e0"};
-var pnum=0
+var pnum=0;
+var soltext;
 function addEquation(){
     n = document.createElement("SPAN");
     if(!!document.getElementById(lastFocused.id)){
@@ -173,17 +174,19 @@ if(!!document.getElementById(lastFocused.id)){
     $(n).insertAfter("#"+lastFocused.id);}
     else{$(n).insertAfter("#"+(lastFocused.id-1));}
     n.className = "card-body card no-def my-3 pop";
-    n.innerHTML = `<p><span id='q${info.length}' class='form-control-sm answerb' ></span><div id="h1${info.length}"><div class="btn-group mb-5" role="group"><button type="button"  class="btn btn-secondary" onclick="addEquation2('h1${info.length}');">Math</button>
-              <button type="button"  class="btn btn-secondary" onclick="addDisplayEquation2('h1${info.length}');">Display Math</button>
-  <button type="button" id="txt" class="btn btn-secondary" onclick="addText2('h1${info.length}');">Text</button>
-  </div></div><div id="h2${info.length}"><div class="btn-group mb-5" role="group">
-  <button type="button" class="btn btn-secondary" onclick="addEquation2('h2${info.length}');">Math</button>
-              <button type="button"  class="btn btn-secondary" onclick="addDisplayEquation2('h2${info.length}');">Display Math</button>
-  <button type="button"  class="btn btn-secondary" onclick="addText2('h2${info.length}');">Text</button></div></div><div id="s${info.length}"><div class="btn-group mb-5" role="group"><button type="button"  class="btn btn-secondary" onclick="addEquation2('s${info.length}');">Math</button>
-              <button type="button"  class="btn btn-secondary" onclick="addDisplayEquation2('s${info.length}');">Display Math</button>
-
-  <button type="button" id="txt" class="btn btn-secondary" onclick="addText2('s${info.length}');">Text</button>
-  <button type="button" id="lb" class="btn btn-secondary" onclick="addBreak2('s${info.length}');">Line break</button></div></div></p>`
+    n.innerHTML = `<p><span id='q${info.length}' class='form-control-sm answerb' ></span>
+    <div class="form-group">
+    <label for="h1${info.length}">Hint 1</label>
+    <textarea class="form-control" id="h1${info.length}" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="h2${info.length}">Hint 2</label>
+    <textarea class="form-control" id="h2${info.length}" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="s${info.length}">Solution</label>
+    <textarea class="form-control" id="s${info.length}" rows="3"></textarea>
+  </div></p>`;
     n.id = "e"+info.length;
     n.onclick='lastFocused=this;'
     var answerMathField = MQ.MathField(document.querySelector("#q"+info.length), {
@@ -194,11 +197,12 @@ if(!!document.getElementById(lastFocused.id)){
     elem: document.querySelector("#e"+l),
     qfield:answerMathField,
     pnum:pnum,
-    h1field:{info:[]},
-    h2field:{info:[]},
-    sfield:{info:[]}
+    h1field:("h1"+l),
+    h2field:("h2"+l),
+    sfield:("s"+l)
 
     });
+    console.log(info);
 //have a form to fill out, can put mathquills in for answers, hint space (2) and solution space.
 }
 
@@ -252,18 +256,18 @@ final += "</p><p>"
 }
 if (obj.type =="problem"){
 //console.log(obj.qfield);
-console.log(obj.h2field);
-var soltext = make(obj.sfield.info);
+//console.log(obj.h2field);
+//soltext = make(obj.sfield.info);
 final += `</p><li class="card card-body no-def my-3 pop">
 
     <p>$\\displaystyle{ ${obj.qfield.latex()} }$ <span id="answer${obj.pnum}" class="form-control-sm answerb"></span><svg id="tu${obj.pnum}" class="bi bi-hand-thumbs-up" width="2em" height="2em" style="display:none" viewBox="0 0 16 16" fill="var(--success)" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd"
         d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
 </svg></p>
-            <!--Hints--><details><summary class="btn btn-outline-success btn-sm mt-2">Hint</summary> ${make(obj.h1field.info)}</details>
-            <details><summary class="btn btn-outline-success btn-sm mt-2">Hint</summary> ${make(obj.h2field.info)}</details>
+            <!--Hints--><details><summary class="btn btn-outline-success btn-sm mt-2">Hint</summary> ${document.getElementById(obj.h1field).value}</details>
+            <details><summary class="btn btn-outline-success btn-sm mt-2">Hint</summary> ${document.getElementById(obj.h2field).value}</details>
             <!--Solution--><details><summary class="btn btn-sm btn-outline-success mt-2">Show/Hide Solution</summary>
-                ${soltext}
+                ${document.getElementById(obj.sfield).value}
         </details>
         </li><p>`
 }
