@@ -1,0 +1,122 @@
+<!DOCTYPE html >
+<html class="bg-dark">
+  <head>
+    <meta charset="UTF-8">
+    <title>Course Maker</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="./node_modules/mdbootstrap/css/mdb.css">
+<link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
+  <script>window.$ = window.jQuery = require('jquery');</script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="prism.css"/>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<link rel="stylesheet" href="mathquill-0.10.1/mathquill.css"/>
+<script src="mathquill-0.10.1/mathquill.js"></script>
+    <script src="mousetrap.min.js"></script>
+<script>
+var MQ = MathQuill.getInterface(2);
+</script>
+    <!--mathjax-->
+  <script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    
+    <script src="check.js"></script>
+  </head>
+  <body class="bg-dark text-light">
+    <style>
+        hr {
+                position: relative;
+                border: none;
+                height: 3px;
+                
+            }
+    </style>
+        <div class="sticky-top pt-4 morpheus-den-gradient text-light">
+        <h1 class="px-5">Course Maker</h1>
+    <div class="btn-group d-flex" role="group">
+      <button type="button" id="eq" class="btn rgba-indigo-strong py-2" onclick="addEquation();">Math</button>
+                  <button type="button" id="deq" class="btn darken-3 cyan py-2" onclick="addDisplayEquation();">Display Math</button>
+      <button type="button" id="pp" class="btn  blue-grey py-2" onclick="addProblem();" >Practice Problem</button>
+      <button type="button" id="txt" class="btn  rgba-green-strong py-2" onclick="addText();">Text</button>
+      <button type="button" id="lb" class="btn  rgba-lime-strong py-2" onclick="addBreak();">Line break</button>
+        </div></div>
+    <div class="mx-5 " id="" style="margin-top:30px">
+        
+      <div class="row">
+          
+          <div class="col-sm-12">
+              
+              <input type="text" class="form-control form-control-lg bg-dark text-light border-dark" id="ctitle" style="font-size:30px;outline:none" placeholder="Title">
+    
+            <div id="root" class="py-5 text-dark">
+                <p id="e0"></p>
+          </div>
+    
+              
+      </div>
+      <button type="button" id="final" class="btn  btn-light" onclick="makeCourse(info);">Make Course</button>
+          <!--<div class="col-sm-4">
+              <h1>Delete</h1>
+              <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Index to delete" id="indexer">
+      <div class="input-group-append">
+        <button class="btn btn-outline-danger" type="button" onclick="deleteElement();">Delete it!</button>
+      </div>
+    </div>
+          </div>-->
+    
+    </div>
+    <div class="btn-group d-flex pt-5" role="group">
+    <a type="button" id="eq" class="btn btn-outline-secondary py-2" onclick="document.getElementById('code').style.display=null;document.getElementById('code2').style.display=null;document.getElementById('preview').style.display='none';this.className='btn btn-secondary py-2 disabled';this.nextElementSibling.className='btn btn-outline-secondary py-2 ';">Code</a>
+      <a type="button" id="eq" class="btn btn-secondary py-2" onclick="document.getElementById('preview').style.display=null;this.className='btn btn-secondary py-2 disabled';this.previousElementSibling.className='btn btn-outline-secondary py-2 ';document.getElementById('code').style.display='none';document.getElementById('code2').style.display='none'">Preview</a>
+
+    </div>
+    <div id="preview" >
+    <h4 class="pt-5">Preview</h4>
+        <div class="row pb-5 mx-1" >
+          
+        <div class="col text-dark bg-light"  id="out"></div>
+    
+          </div></div>
+          <div class="row pt-5" id="code" style="display:none">
+            <div class="col">
+          <h4>HTML</h4>
+        <pre  style="white-space: pre-line;"><code style="white-space: pre-line;" class="language-html" id="out2">&lt;!--Nothing here yet!--&gt;</code></pre>
+            </div>
+            <div class="col">
+        <h4>Inline Javascript</h4>
+        <pre class="row" ><code class="language-js" id="out3">//No Javascript is needed unless you use practice problems.</code></pre>
+            </div>
+          </div>
+          <div class="" id="code2" style="display:none">
+        <h4 class="pt-3">check.js <small>(separate file)</small> </h4><br>
+        <pre data-src="check.js" class="row language-js" ></pre></div>
+    </div>
+    <script src="prism.js"></script>
+    <script type="text/javascript" src="node_modules/mdbootstrap/js/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/popper.min.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script>
+    </body>
+    <script src="make.js"></script>
+        <script>
+        Mousetrap.bind('enter', function(){makeCourse(info)});
+        Mousetrap.bind('alt+t', function(){addText()});
+        Mousetrap.bind('alt+d', function(){addDisplayEquation()});
+        Mousetrap.bind(['alt+e','mod+e'], function(){addEquation()});
+        Mousetrap.bind('alt+l', function(){addBreak()});
+        Mousetrap.bind('alt+i', function(){addItem()});
+    </script>
+</html>
