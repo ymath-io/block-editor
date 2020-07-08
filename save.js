@@ -1,4 +1,4 @@
-var FileSaver = require('file-saver');
+
 function pack(toggle=true){
     var out = {title:null,data:[]};
     out.title = document.querySelector("#ctitle").value;
