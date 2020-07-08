@@ -39,7 +39,7 @@ function readFile(file) {
     const reader = new FileReader();
     reader.addEventListener('load', (event) => {
       const result = event.target.result;
-      console.log(result);
+      //console.log(result);
       t=JSON.parse(result);
       $('#importm').modal('hide');
       document.querySelector(".modal-backdrop").remove();
@@ -87,11 +87,11 @@ function importData(data,title){
             root.lastChild.firstChild.innerHTML = obj.value;
         }
         else if (obj.type=="mq"){
-            mf = addEquation();
+            mf = addEquation(false);
             mf.latex(obj.value);
         }
         else if (obj.type=="dmq"){
-            mf = addDisplayEquation();
+            mf = addDisplayEquation(false);
             mf.latex(obj.value);
         }
         else if (obj.type=="break"){
@@ -107,6 +107,18 @@ function importData(data,title){
             document.getElementById(d.sfield).value = obj.value.s;
         }
     }
+    /*var n;
+    focused = false;
+    for (i in info){
+        n = info[i];
+        if ((n.type=="mq"||n.type=="dmq")&&!focused){
+            
+            focused=true;
+            break
+        }
+
+    }
+    n.mathfield.focus();*/
 }
 
 function clearAll(){

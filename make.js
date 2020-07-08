@@ -4,7 +4,7 @@ var uinfo = [];
 var lastFocused={id:"e0"};
 var pnum=0;
 var soltext;
-function addEquation(){
+function addEquation(f=true){
     n = document.createElement("SPAN");
     /*if(!!document.getElementById(lastFocused.id)){
     $(n).insertAfter("#"+lastFocused.id);}
@@ -25,11 +25,11 @@ function addEquation(){
     elem: document.querySelector("#e"+l),
     mathfield: answerMathField
     });
-    answerMathField.focus()
+    if(f){answerMathField.focus()}
     return answerMathField;
 };
 
-function addDisplayEquation(){
+function addDisplayEquation(f=true){
     n = document.createElement("DIV");
     /*if(!!document.getElementById(lastFocused.id)){
     $(n).insertAfter("#"+lastFocused.id);}
@@ -51,7 +51,8 @@ function addDisplayEquation(){
     mathfield: answerMathField
     });
     n.onclick=`info[${info.length}].mathfield.focus()`;
-answerMathField.focus();
+    if (f){
+answerMathField.focus();}
 return answerMathField;
 };
 
