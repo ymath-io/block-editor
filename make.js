@@ -26,6 +26,7 @@ function addEquation(){
     mathfield: answerMathField
     });
     answerMathField.focus()
+    return answerMathField;
 };
 
 function addDisplayEquation(){
@@ -50,8 +51,8 @@ function addDisplayEquation(){
     mathfield: answerMathField
     });
     n.onclick=`info[${info.length}].mathfield.focus()`;
-answerMathField.focus()
-
+answerMathField.focus();
+return answerMathField;
 };
 
 function addText(){
@@ -68,11 +69,7 @@ l = info.length;
     elem: document.querySelector("#e"+l)
 
     });
-    uinfo.push({type:"text",
-    id: "e"+l,
-    elem: document.querySelector("#e"+l)
-
-    });
+    
 
 };
 
@@ -123,6 +120,16 @@ n = document.createElement("LI");
     lastFocused=n;
 //added an answer space as well.
 MathJax.typeset();
+return {type:"problem",
+id: "e"+l,
+elem: document.querySelector("#e"+l),
+qfield:answerMathField,
+afield: answerMathField2,
+pnum:pnum,
+h1field:("h1"+l),
+h2field:("h2"+l),
+sfield:("s"+l),
+};
 }
 
 function addBreak(){
