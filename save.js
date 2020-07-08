@@ -31,7 +31,7 @@ function pack(toggle=true){
     var blob = new Blob([jsonse], {type: "application/json"});
     var title=out.title + ".json";
     if (title==".json"){title="course.json"}
-    FileSaver.saveAs(blob, title);
+    saveAs(blob, title);
     if (toggle){
     $('.navbar-toggler').click(); }
 }
