@@ -1,4 +1,4 @@
-var FileSaver = require('file-saver');
+//var FileSaver = require('file-saver');
 function pack(){
     var out = {title:null,data:[]};
     out.title = document.querySelector("#ctitle").value;
@@ -31,6 +31,6 @@ function pack(){
     var blob = new Blob([jsonse], {type: "application/json"});
     var title=out.title + ".json";
     if (title==".json"){title="course.json"}
-    FileSaver.saveAs(blob, title);
+    saveAs(blob, title);
     $('.navbar-toggler').click(); 
 }
