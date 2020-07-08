@@ -1,4 +1,4 @@
-var JSZip = require("jszip");
+
 var zip; //the zip file
 var f; // the folder
 var htt; //the generated html text
