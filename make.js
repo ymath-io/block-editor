@@ -210,16 +210,18 @@ document.querySelector("#out").innerHTML = final;
 MathJax.typeset();
 document.querySelector("#out2").innerText = final;
 if (fscript!==""){
-document.querySelector("#out3").innerHTML = fscript;}
+document.querySelector("#out3").innerHTML = fscript;chk=true} else {chk=false}
 Prism.highlightAll();
 for (a in runscript){
     b = runscript[a];
     initfield(b.n,"",b.ans);
 }
-
+htt=final;
+ct = document.querySelector("#ctitle").value;
+scr=fscript;
 }
 
-function make(data){
+/* function make(data){
 var final = "<p>";
 for (num in data){
 obj = data[num];
@@ -250,7 +252,7 @@ final += "</p><p>"
 final += "</p>"
 return final;
 
-}
+} */
 
 function rmFromInfo(id){
     for (n in info){
