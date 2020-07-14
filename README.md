@@ -7,5 +7,5 @@ This is a desktop and web app for writing math courses. It features:
 * practice problems
 
 ## Known bugs
-* "Make Course" from menu bar does not work. Must either hit "enter" or the green button.
+* "Make Course" from menu bar does not work. Must either hit "enter" or the ~~green~~ blue button.
 
