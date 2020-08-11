@@ -1,5 +1,9 @@
 <img src="https://socrathematics.github.io/favicon.png" height="70px" width="70px"></img>
+
 # Course Maker
+https://cms.ymath.io/block-editor
+
+## Features
 This is a desktop and web app for writing math courses. It features:
 * text boxes
 * inline math
