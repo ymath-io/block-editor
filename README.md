@@ -1,4 +1,4 @@
-<img src="https://socrathematics.github.io/favicon.png" height="70px" width="70px"></img>
+<img src="https://ymath.io/favicon.png" height="70px" width="70px"></img>
 
 # Course Maker
 https://cms.ymath.io/block-editor
